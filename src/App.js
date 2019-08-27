@@ -5,6 +5,9 @@ import Pagina2 from './scenes/Pagina2';
 import Pagina3 from './scenes/Pagina3';
 import Pagina4 from './scenes/Pagina4';
 import Pagina5 from './scenes/Pagina5';
+import Pagina6 from './scenes/Pagina6';
+
+console.disableYellowBox = true;
 
 const App = () => (
   <Router>
@@ -14,6 +17,7 @@ const App = () => (
       <Scene key="pagina3" component={Pagina3} hideNavBar />
       <Scene key="pagina4" component={Pagina4} hideNavBar />
       <Scene key="pagina5" component={Pagina5} hideNavBar />
+      <Scene key="pagina6" component={Pagina6} hideNavBar />
     </Stack>
   </Router>
 );
