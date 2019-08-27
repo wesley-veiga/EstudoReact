@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { Router, Stack, Scene } from 'react-native-router-flux';
+import React, {Component} from 'react';
+import {Router, Stack, Scene} from 'react-native-router-flux';
 import Home from './scenes/Home';
-import Pagina2 from './scenes/Pagina2';
-import Pagina3 from './scenes/Pagina3';
-import Pagina4 from './scenes/Pagina4';
-import Pagina5 from './scenes/Pagina5';
-import Pagina6 from './scenes/Pagina6';
+import TiposPokemon from './scenes/TiposPokemon';
+import ListaPokemon from './scenes/ListaPokemon';
+import Pokemon from './scenes/Pokemon';
 
 console.disableYellowBox = true;
 
@@ -13,11 +11,9 @@ const App = () => (
   <Router>
     <Stack key="root">
       <Scene key="home" component={Home} hideNavBar />
-      <Scene key="pagina2" component={Pagina2} hideNavBar />
-      <Scene key="pagina3" component={Pagina3} hideNavBar />
-      <Scene key="pagina4" component={Pagina4} hideNavBar />
-      <Scene key="pagina5" component={Pagina5} hideNavBar />
-      <Scene key="pagina6" component={Pagina6} hideNavBar />
+      <Scene key="tipospokemon" component={TiposPokemon} hideNavBar />
+      <Scene key="listapokemon" component={ListaPokemon} hideNavBar />
+      <Scene key="pokemon" component={Pokemon} hideNavBar />
     </Stack>
   </Router>
 );

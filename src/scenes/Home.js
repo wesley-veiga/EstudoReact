@@ -9,7 +9,7 @@ class Home extends Component {
   // };
 
   handlePress = () => {
-    Actions.pagina4();
+    Actions.tipospokemon();
   };
 
   render() {

@@ -10,7 +10,7 @@ import {
 
 const {width, height} = Dimensions.get('window');
 
-class Pagina6 extends Component {
+class Pokemon extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -193,4 +193,4 @@ class Pagina6 extends Component {
   }
 }
 
-export default Pagina6;
+export default Pokemon;
