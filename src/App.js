@@ -4,6 +4,7 @@ import Home from './scenes/Home';
 import TiposPokemon from './scenes/TiposPokemon';
 import ListaPokemon from './scenes/ListaPokemon';
 import Pokemon from './scenes/Pokemon';
+import Equipe from './scenes/Equipe';
 
 console.disableYellowBox = true;
 
@@ -14,6 +15,7 @@ const App = () => (
       <Scene key="tipospokemon" component={TiposPokemon} hideNavBar />
       <Scene key="listapokemon" component={ListaPokemon} hideNavBar />
       <Scene key="pokemon" component={Pokemon} hideNavBar />
+      <Scene key="equipe" component={Equipe} hideNavBar />
     </Stack>
   </Router>
 );

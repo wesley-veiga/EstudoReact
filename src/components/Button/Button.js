@@ -1,14 +1,26 @@
-import React, { Component } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import React, {Component} from 'react';
+import {TouchableOpacity} from 'react-native';
 
 class Button extends Component {
-    render() {
-        return (
-            <TouchableOpacity onPress={this.props.action} activeOpacity={.7} style={{  justifyContent: 'center', alignItems: 'center', height: 50, width: 300, backgroundColor: "grey", borderRadius: 25, lineHeight: 50 }}>
-                {this.props.children}
-            </TouchableOpacity>
-        )
-    }
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={this.props.action}
+        activeOpacity={0.7}
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 50,
+          backgroundColor: '#F1B140',
+          borderRadius: 25,
+          lineHeight: 50,
+          paddingHorizontal: 10,
+          minWidth: 150,
+        }}>
+        {this.props.children}
+      </TouchableOpacity>
+    );
+  }
 }
 
 export default Button;

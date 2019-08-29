@@ -4,25 +4,35 @@ import Button from '../components/Button/Button';
 import {Actions} from 'react-native-router-flux';
 
 class Home extends Component {
-  // state = {
-  //   image: '../images/logo.png',
-  // };
-
-  handlePress = () => {
+  botao1 = () => {
     Actions.tipospokemon();
+  };
+
+  botao2 = () => {
+    Actions.equipe();
   };
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#D8D8D8', alignItems: 'center'}}>
-        <View style={{paddingTop: 30}}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'white',
+          alignItems: 'center',
+        }}>
+        <View style={{paddingTop: 80}}>
           <Image
             source={require('../images/logo.png')}
             style={{width: 200, height: 200}}
           />
         </View>
 
-        <View style={{flex: 2, alignItems: 'center', paddingTop: 60}}>
+        <View
+          style={{
+            flex: 2,
+            alignItems: 'center',
+            paddingTop: 60,
+          }}>
           <View style={{paddingLeft: 30, paddingRight: 30}}>
             <Text
               style={{fontSize: 15, textAlign: 'center', alignItems: 'center'}}>
@@ -31,22 +41,44 @@ class Home extends Component {
             </Text>
           </View>
 
-          <View style={{paddingTop: 70}}>
-            <Button title={'Clique aqui'} action={this.handlePress}>
-              <Text>Entrar</Text>
-            </Button>
+          <View
+            style={{
+              width: 300,
+              paddingTop: 90,
+            }}>
+            <View>
+              <Button title={'pokedex'} action={this.botao1}>
+                <Text
+                  style={{
+                    color: '#FFFF',
+                    fontWeight: 'bold',
+                    textShadowOffset: {width: -1, height: 1},
+                    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                    textShadowRadius: 10,
+                  }}>
+                  Pokedex
+                </Text>
+              </Button>
+            </View>
+            <View
+              style={{
+                paddingTop: 30,
+              }}>
+              <Button title={'equipe'} action={this.botao2}>
+                <Text
+                  style={{
+                    color: '#FFFF',
+                    fontWeight: 'bold',
+                    textShadowOffset: {width: -1, height: 1},
+                    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                    textShadowRadius: 10,
+                  }}>
+                  Equipe
+                </Text>
+              </Button>
+            </View>
           </View>
         </View>
-        {/* <View>
-          <Text
-            style={{
-              height: 300,
-              fontSize: 12,
-              lineHeight: 20,
-            }}>
-            Lorem Ipsum is simply dummy text of the printing
-          </Text>
-        </View> */}
       </View>
     );
   }

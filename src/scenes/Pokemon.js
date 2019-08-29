@@ -6,7 +6,10 @@ import {
   FlatList,
   Dimensions,
   ScrollView,
+  ToastAndroid,
 } from 'react-native';
+import Button from '../components/Button/Button';
+import listaEquipe from '../configs/equipe';
 
 const {width, height} = Dimensions.get('window');
 
@@ -20,6 +23,16 @@ class Pokemon extends Component {
       ur2: this.props.item.url.abilities,
     };
   }
+
+  salvarpokemon = () => {
+    const pokemon = this.state.pokemon;
+    if (listaEquipe.length < 6) {
+      listaEquipe.push(pokemon);
+      ToastAndroid.show('Pokemon adicionado com sucesso!', ToastAndroid.SHORT);
+    } else {
+      ToastAndroid.show('Pokedex cheia!', ToastAndroid.SHORT);
+    }
+  };
 
   componentDidMount() {
     this.getTipo();
@@ -184,6 +197,19 @@ class Pokemon extends Component {
                     </Text>
                     <Text>{this.state.pokemon.base_experience}</Text>
                   </View>
+                </View>
+                <View style={{paddingTop: 50, alignItems: 'center'}}>
+                  <Button title={'equipe'} action={this.salvarpokemon}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        textShadowOffset: {width: -1, height: 1},
+                        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                        textShadowRadius: 10,
+                      }}>
+                      Escolher Pokemon
+                    </Text>
+                  </Button>
                 </View>
               </View>
             </View>

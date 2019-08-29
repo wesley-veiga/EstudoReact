@@ -44,7 +44,7 @@ class TiposPokemons extends Component {
     }
 
     return (
-      <View style={{flex: 1, paddingHorizontal: 5, backgroundColor: '#F9F9F9'}}>
+      <View style={{flex: 1, paddingHorizontal: 5, backgroundColor: '#FFFF'}}>
         <FlatList
           ListHeaderComponent={() => (
             <View>
@@ -64,18 +64,22 @@ class TiposPokemons extends Component {
             <TouchableOpacity
               onPress={() => Actions.listapokemon({item: item})}
               style={{
-                height: 100,
-                backgroundColor: '#bdc3c7',
-                marginBottom: 5,
+                height: 70,
+                backgroundColor: '#F1B140',
+                marginBottom: 10,
                 justifyContent: 'center',
-                borderRadius: 5,
+                borderRadius: 35,
               }}>
               <Text
                 style={{
+                  color: 'white',
                   fontSize: 20,
                   textAlign: 'center',
                   paddingVertical: 10,
                   textTransform: 'capitalize',
+                  textShadowOffset: {width: -1, height: 1},
+                  textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                  textShadowRadius: 10,
                 }}>
                 {item.name}
               </Text>
