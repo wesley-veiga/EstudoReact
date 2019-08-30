@@ -27,8 +27,12 @@ class Pokemon extends Component {
   salvarpokemon = () => {
     const pokemon = this.state.pokemon;
     if (listaEquipe.length < 6) {
-      listaEquipe.push(pokemon);
-      ToastAndroid.show('Pokemon adicionado com sucesso!', ToastAndroid.SHORT);
+      if (listaEquipe.findIndex(f => f.id == pokemon.id) != -1) {
+        ToastAndroid.show('Pokemon já adicionado!', ToastAndroid.SHORT);
+      } else {
+        ToastAndroid.show('Pokemon adicionado!', ToastAndroid.SHORT);
+        listaEquipe.push(pokemon);
+      }
     } else {
       ToastAndroid.show('Pokedex cheia!', ToastAndroid.SHORT);
     }
@@ -199,13 +203,19 @@ class Pokemon extends Component {
                   </View>
                 </View>
                 <View style={{paddingTop: 50, alignItems: 'center'}}>
-                  <Button title={'equipe'} action={this.salvarpokemon}>
+                  <Button
+                    style={{
+                      shadowColor: 'rgba(0, 0, 0, 0.1)',
+                      shadowOpacity: 0.8,
+                      elevation: 6,
+                      shadowRadius: 15,
+                      shadowOffset: {width: 1, height: 13},
+                    }}
+                    title={'equipe'}
+                    action={this.salvarpokemon}>
                     <Text
                       style={{
                         color: 'white',
-                        textShadowOffset: {width: -1, height: 1},
-                        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                        textShadowRadius: 10,
                       }}>
                       Escolher Pokemon
                     </Text>

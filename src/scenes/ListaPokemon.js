@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import SearchBar from '../components/SearchBar';
 
 class ListaPokemon extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class ListaPokemon extends Component {
     this.state = {
       loading: false,
       url: this.props.item.url,
+      query: '',
     };
   }
 
@@ -21,11 +23,24 @@ class ListaPokemon extends Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
+          data: res.pokemon,
           pokemon: res.pokemon,
           url: res.next,
           loading: false,
         });
       });
+  };
+
+  onChangeQuery = query => {
+    this.setState({query});
+
+    var listPokemon = [...this.state.data];
+
+    var listQuery = listPokemon.filter(f =>
+      f.pokemon.name.toLowerCase().includes(query.toLowerCase()),
+    );
+
+    this.setState({pokemon: listQuery});
   };
 
   render() {
@@ -38,6 +53,10 @@ class ListaPokemon extends Component {
     } else
       return (
         <View style={{flex: 1, backgroundColor: '#FFFF'}}>
+          <SearchBar
+            onChangeText={text => this.onChangeQuery(text)}
+            value={this.state.query}
+          />
           <FlatList
             ListHeaderComponent={() => (
               <View>
@@ -52,16 +71,22 @@ class ListaPokemon extends Component {
                 </Text>
               </View>
             )}
+            style={{paddingHorizontal: 10}}
             data={this.state.pokemon}
             renderItem={({item}) => (
               <TouchableOpacity
                 onPress={() => Actions.pokemon({item: item.pokemon})}
                 style={{
-                  height: 70,
+                  height: 50,
                   backgroundColor: '#F1B140',
                   marginBottom: 10,
                   justifyContent: 'center',
                   borderRadius: 35,
+                  shadowColor: 'rgba(0, 0, 0, 0.1)',
+                  shadowOpacity: 0.8,
+                  elevation: 6,
+                  shadowRadius: 15,
+                  shadowOffset: {width: 1, height: 13},
                 }}>
                 <Text
                   style={{
@@ -70,9 +95,6 @@ class ListaPokemon extends Component {
                     textAlign: 'center',
                     paddingVertical: 10,
                     textTransform: 'capitalize',
-                    textShadowOffset: {width: -1, height: 1},
-                    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                    textShadowRadius: 10,
                   }}>
                   {item.pokemon.name}
                 </Text>

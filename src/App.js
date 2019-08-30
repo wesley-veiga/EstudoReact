@@ -6,7 +6,7 @@ import ListaPokemon from './scenes/ListaPokemon';
 import Pokemon from './scenes/Pokemon';
 import Equipe from './scenes/Equipe';
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 const App = () => (
   <Router>

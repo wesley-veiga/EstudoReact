@@ -26,7 +26,6 @@ class Home extends Component {
             style={{width: 200, height: 200}}
           />
         </View>
-
         <View
           style={{
             flex: 2,
@@ -52,9 +51,6 @@ class Home extends Component {
                   style={{
                     color: '#FFFF',
                     fontWeight: 'bold',
-                    textShadowOffset: {width: -1, height: 1},
-                    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                    textShadowRadius: 10,
                   }}>
                   Pokedex
                 </Text>
@@ -69,9 +65,6 @@ class Home extends Component {
                   style={{
                     color: '#FFFF',
                     fontWeight: 'bold',
-                    textShadowOffset: {width: -1, height: 1},
-                    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                    textShadowRadius: 10,
                   }}>
                   Equipe
                 </Text>

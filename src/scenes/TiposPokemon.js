@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import SearchBar from '../components/SearchBar';
 
 handlePress = () => {
   Actions.pagina3();
@@ -13,6 +14,7 @@ class TiposPokemons extends Component {
       loading: false,
       pokemon: [],
       url: 'https://pokeapi.co/api/v2/type/',
+      query: '',
     };
   }
 
@@ -26,12 +28,27 @@ class TiposPokemons extends Component {
     fetch(this.state.url)
       .then(res => res.json())
       .then(res => {
+        // alert(JSON.stringify(res));
         this.setState({
+          data: res.results,
           pokemon: res.results,
           url: res.next,
           loading: false,
         });
       });
+    // .catch(err => alert(JSON.stringify(err)));
+  };
+
+  onChangeQuery = query => {
+    this.setState({query});
+
+    var listPokemon = [...this.state.data];
+
+    var listQuery = listPokemon.filter(f =>
+      f.name.toLowerCase().includes(query.toLowerCase()),
+    );
+
+    this.setState({pokemon: listQuery});
   };
 
   render() {
@@ -45,6 +62,10 @@ class TiposPokemons extends Component {
 
     return (
       <View style={{flex: 1, paddingHorizontal: 5, backgroundColor: '#FFFF'}}>
+        <SearchBar
+          onChangeText={text => this.onChangeQuery(text)}
+          value={this.state.query}
+        />
         <FlatList
           ListHeaderComponent={() => (
             <View>
@@ -55,7 +76,7 @@ class TiposPokemons extends Component {
                   textAlign: 'center',
                   paddingVertical: 30,
                 }}>
-                Lista de tipos de Pokemons
+                Escolha o tipo de Pokemon
               </Text>
             </View>
           )}
@@ -64,11 +85,16 @@ class TiposPokemons extends Component {
             <TouchableOpacity
               onPress={() => Actions.listapokemon({item: item})}
               style={{
-                height: 70,
+                height: 50,
                 backgroundColor: '#F1B140',
                 marginBottom: 10,
                 justifyContent: 'center',
                 borderRadius: 35,
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowOpacity: 0.8,
+                elevation: 6,
+                shadowRadius: 15,
+                shadowOffset: {width: 1, height: 13},
               }}>
               <Text
                 style={{
@@ -77,9 +103,6 @@ class TiposPokemons extends Component {
                   textAlign: 'center',
                   paddingVertical: 10,
                   textTransform: 'capitalize',
-                  textShadowOffset: {width: -1, height: 1},
-                  textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                  textShadowRadius: 10,
                 }}>
                 {item.name}
               </Text>
