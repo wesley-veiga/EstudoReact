@@ -1,82 +1,82 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import React from 'react';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import Button from '../components/Button/Button';
 import {Actions} from 'react-native-router-flux';
 
-class Home extends Component {
-  botao1 = () => {
+const Home = () => {
+  const botao1 = () => {
     Actions.tipospokemon();
   };
 
-  botao2 = () => {
+  const botao2 = () => {
     Actions.equipe();
   };
 
-  render() {
-    return (
+  return (
+    <View style={styles.container}>
+      <View style={{paddingTop: 80}}>
+        <Image
+          source={require('../images/logo.png')}
+          style={{width: 200, height: 200}}
+        />
+      </View>
+
       <View
         style={{
-          flex: 1,
-          backgroundColor: 'white',
+          flex: 2,
           alignItems: 'center',
+          paddingTop: 60,
         }}>
-        <View style={{paddingTop: 80}}>
-          <Image
-            source={require('../images/logo.png')}
-            style={{width: 200, height: 200}}
-          />
+        <View style={{paddingLeft: 30, paddingRight: 30}}>
+          <Text
+            style={{fontSize: 15, textAlign: 'center', alignItems: 'center'}}>
+            Aplicativo criado com finalindade de estudo do React-Native,
+            consumindo API do PokéApi, http:podeapi.co
+          </Text>
         </View>
+
         <View
           style={{
-            flex: 2,
-            alignItems: 'center',
-            paddingTop: 60,
+            width: 300,
+            paddingTop: 90,
           }}>
-          <View style={{paddingLeft: 30, paddingRight: 30}}>
-            <Text
-              style={{fontSize: 15, textAlign: 'center', alignItems: 'center'}}>
-              Aplicativo criado com finalindade de estudo do React-Native,
-              consumindo API do PokéApi, http://podeapi.co
-            </Text>
+          <View>
+            <Button title={'pokedex'} action={botao1}>
+              <Text
+                style={{
+                  color: '#FFFF',
+                  fontWeight: 'bold',
+                }}>
+                Pokedex
+              </Text>
+            </Button>
           </View>
-
           <View
             style={{
-              width: 300,
-              paddingTop: 90,
+              paddingTop: 30,
             }}>
-            <View>
-              <Button title={'pokedex'} action={this.botao1}>
-                <Text
-                  style={{
-                    color: '#FFFF',
-                    fontWeight: 'bold',
-                  }}>
-                  Pokedex
-                </Text>
-              </Button>
-            </View>
-            <View
-              style={{
-                paddingTop: 30,
-              }}>
-              <Button title={'equipe'} action={this.botao2}>
-                <Text
-                  style={{
-                    color: '#FFFF',
-                    fontWeight: 'bold',
-                  }}>
-                  Equipe
-                </Text>
-              </Button>
-            </View>
+            <Button title={'equipe'} action={botao2}>
+              <Text
+                style={{
+                  color: '#FFFF',
+                  fontWeight: 'bold',
+                }}>
+                Equipe
+              </Text>
+            </Button>
           </View>
         </View>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+});
 
 export default Home;
