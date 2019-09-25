@@ -53,7 +53,7 @@ const ListaPokemon = item => {
                 textAlign: 'center',
                 paddingVertical: 30,
               }}>
-              Lista de Pokemons do tipo {item.name}
+              Lista de Pokemons do tipo {item.item.name}
             </Text>
           </View>
         )}

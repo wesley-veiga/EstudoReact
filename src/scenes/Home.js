@@ -31,7 +31,7 @@ const Home = () => {
           <Text
             style={{fontSize: 15, textAlign: 'center', alignItems: 'center'}}>
             Aplicativo criado com finalindade de estudo do React-Native,
-            consumindo API do PokéApi, http:podeapi.co
+            consumindo API do PokéApi, https://podeapi.co
           </Text>
         </View>
 
