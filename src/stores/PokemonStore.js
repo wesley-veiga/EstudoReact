@@ -1,10 +1,10 @@
 import {createStore, combineReducers} from 'redux';
-import {pokemons} from '../reducers';
+import {pokemons as PokemonReducer} from '../reducers';
 
-const PokemonStore = createStore (
-  combineReducers ({
-    pokemons,
-  })
+const PokemonStore = createStore(
+  combineReducers({
+    PokemonReducer,
+  }),
 );
 
 export default PokemonStore;

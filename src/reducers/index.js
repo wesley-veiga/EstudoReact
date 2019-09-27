@@ -1,16 +1,24 @@
-export const pokemons = (state = {pokemons: []}, action) => {
-  const newState = {...state};
+const INITIAL_STATES = {
+  list_pokemon: [],
+};
 
+export const pokemons = (state = INITIAL_STATES, action) => {
   switch (action.type) {
     case 'ADD_POKEMON':
-      newState.pokemons.push (action.pokemon);
-      return newState;
+      return {
+        ...state,
+        list_pokemon: [...state.list_pokemon, action.pokemon],
+      };
     case 'REMOVE_POKEMON':
-      newState.pokemons = newState.pokemons.filter (
-        pokemon => pokemon.id != action.pokemon.id
-      );
-      return newState;
+      return {
+        ...state,
+        list_pokemon: [
+          ...state.list_pokemon.filter(f => f.id !== action.pokemon),
+        ],
+      };
     default:
       return state;
   }
 };
+
+export default pokemons;

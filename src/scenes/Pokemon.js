@@ -9,32 +9,36 @@ import {
   ToastAndroid,
 } from 'react-native';
 import Button from '../components/Button/Button';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addPokemon} from '../actions';
 import {Actions} from 'react-native-router-flux';
 
 const {width} = Dimensions.get('window');
 
-const Pokemon = item => {
+const Pokemon = ({item} = this.props) => {
   const botao1 = () => {
     Actions.equipe();
   };
 
+  const dispatch = useDispatch();
+
+  const pokemonLista = useSelector(store => store.PokemonReducer.list_pokemon);
+
   const [values, setValues] = useState({
     loading: false,
     sprites: null,
-    urlSprites: item.item.url,
-    urlAbilities: item.item.url.abilities,
+    urlSprites: item.url,
+    urlAbilities: item.url.abilities,
   });
 
   const salvarpokemon = () => {
-    const pokemon = pokemon;
-    if (pokemons.length < 6) {
-      if (pokemons.findIndex(f => f.id == pokemon.id) != -1) {
+    const pokemon = values.pokemon;
+    if (pokemonLista.length < 6) {
+      if (pokemonLista.findIndex(f => f.id == pokemon.id) != -1) {
         ToastAndroid.show('Pokemon já adicionado!', ToastAndroid.SHORT);
       } else {
         ToastAndroid.show('Pokemon adicionado!', ToastAndroid.SHORT);
-        addPokemon(pokemon);
+        dispatch(addPokemon(pokemon));
       }
     } else {
       ToastAndroid.show('Pokedex cheia!', ToastAndroid.SHORT);
@@ -43,7 +47,6 @@ const Pokemon = item => {
 
   const getTipo = () => {
     setValues({...values, loading: true});
-    // alert(JSON.stringify(values.urlSprites));
     fetch(values.urlSprites)
       .then(res => res.json())
       .then(res => {
@@ -64,7 +67,7 @@ const Pokemon = item => {
   }, []);
 
   const weight = values.weight / 100;
-  const height = values.height;
+  const height = values.height / 10;
   const base_experience = values.base_experience;
   const sprites = values.sprites;
   const abilities = values.abilities;
@@ -83,7 +86,7 @@ const Pokemon = item => {
             fontWeight: 'bold',
             textTransform: 'capitalize',
           }}>
-          {item.item.name}
+          {item.name}
         </Text>
       </View>
 
@@ -261,15 +264,4 @@ const Pokemon = item => {
   );
 };
 
-const mapStateToProps = state => ({
-  pokemons: state.pokemons.pokemons,
-});
-
-const mapDispatchToProps = dispatch => ({
-  addPokemon: pokemon => dispatch(addPokemon(pokemon)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Pokemon);
+export default Pokemon;
