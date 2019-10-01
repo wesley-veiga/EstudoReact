@@ -1,23 +1,22 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, TextInput, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class SearchBar extends Component {
-  render({...props} = this.props) {
-    return (
-      <View
-        style={{
-          flexDirection: 'row',
-          alignSelf: 'center',
-        }}>
-        <View style={styles.container}>
-          <Icon name={'search'} color={'gray'} size={35} />
-          <TextInput style={{flex: 1}} {...props} />
-        </View>
+const SearchBar = ({...props} = this.props) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignSelf: 'center',
+      }}>
+      <View style={styles.container}>
+        <Icon name={'search'} color={'gray'} size={35} />
+        <TextInput style={{flex: 1}} {...props} />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+export default SearchBar;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,5 +32,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5e4ea',
   },
 });
-
-export default SearchBar;

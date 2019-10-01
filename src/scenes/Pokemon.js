@@ -12,6 +12,7 @@ import Button from '../components/Button/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import {addPokemon} from '../actions';
 import {Actions} from 'react-native-router-flux';
+import styles from '../components/style';
 
 const {width} = Dimensions.get('window');
 
@@ -73,23 +74,8 @@ const Pokemon = ({item} = this.props) => {
   const abilities = values.abilities;
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F9F9F9'}}>
-      <View
-        style={{
-          alignItems: 'center',
-          alignContent: 'center',
-          paddingTop: 50,
-        }}>
-        <Text
-          style={{
-            fontSize: 40,
-            fontWeight: 'bold',
-            textTransform: 'capitalize',
-          }}>
-          {item.name}
-        </Text>
-      </View>
-
+    <View style={styles.container}>
+      <Text style={styles.textTitle}>{item.name}</Text>
       <View style={{alignContent: 'space-around'}}>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -149,14 +135,7 @@ const Pokemon = ({item} = this.props) => {
 
       <ScrollView>
         <View>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              fontWeight: 'bold',
-            }}>
-            Habilidades
-          </Text>
+          <Text style={styles.textSubtitle}>Habilidades</Text>
         </View>
 
         <View>
@@ -165,26 +144,15 @@ const Pokemon = ({item} = this.props) => {
               data={abilities}
               renderItem={({item}) => {
                 return (
-                  <View style={{paddingLeft: 15, paddingTop: 10}}>
-                    <Text style={{fontSize: 20, textTransform: 'capitalize'}}>
-                      {item.ability.name}
-                    </Text>
+                  <View style={{paddingLeft: 15}}>
+                    <Text style={styles.text}>{item.ability.name}</Text>
                   </View>
                 );
               }}
             />
 
             <View>
-              <Text
-                style={{
-                  paddingTop: 10,
-                  paddingVertical: 10,
-                  fontSize: 25,
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}>
-                Informações
-              </Text>
+              <Text style={styles.textSubtitle}>Informações</Text>
 
               <View
                 style={{
@@ -193,75 +161,43 @@ const Pokemon = ({item} = this.props) => {
                   alignContent: 'center',
                 }}>
                 <View>
-                  <Text style={{fontWeight: 'bold', fontSize: 15}}>Peso:</Text>
-                  <Text>{weight} kg</Text>
+                  <Text style={styles.textBold}>Peso:</Text>
+                  <Text style={styles.text}>{weight} kg</Text>
                 </View>
                 <View>
-                  <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                    Altura:
-                  </Text>
-                  <Text>{height} Metros</Text>
+                  <Text style={styles.textBold}>Altura:</Text>
+                  <Text style={styles.text}>{height} Metros</Text>
                 </View>
                 <View>
-                  <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                    XP Base
-                  </Text>
-                  <Text>{base_experience}</Text>
+                  <Text style={styles.textBold}>XP Base</Text>
+                  <Text style={styles.text}>{base_experience}</Text>
                 </View>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignContent: 'center',
-                  alignSelf: 'center',
-                }}>
-                <View
+              <View style={{paddingTop: 30}} />
+              <View style={styles.row}>
+                <Button title={'equipe'} action={botao1}>
+                  <Text style={styles.textButton}>Equipe</Text>
+                </Button>
+                <View style={{paddingLeft: 12}} />
+                <Button
                   style={{
-                    paddingTop: 50,
-                    paddingRight: 20,
-                    alignItems: 'center',
-                  }}>
-                  <Button title={'equipe'} action={botao1}>
-                    <Text
-                      style={{
-                        color: '#FFFF',
-                      }}>
-                      Equipe
-                    </Text>
-                  </Button>
-                </View>
-                <View style={{paddingTop: 50, alignItems: 'center'}}>
-                  <Button
-                    style={{
-                      shadowColor: 'rgba(0, 0, 0, 0.1)',
-                      shadowOpacity: 0.8,
-                      elevation: 6,
-                      shadowRadius: 15,
-                      shadowOffset: {width: 1, height: 13},
-                    }}
-                    title={'escolherpokemon'}
-                    action={salvarpokemon}>
-                    <Text
-                      style={{
-                        color: 'white',
-                      }}>
-                      Escolher Pokemon
-                    </Text>
-                  </Button>
-                </View>
+                    shadowColor: 'rgba(0, 0, 0, 0.1)',
+                    shadowOpacity: 0.8,
+                    elevation: 6,
+                    shadowRadius: 15,
+                    shadowOffset: {width: 1, height: 13},
+                  }}
+                  title={'escolherpokemon'}
+                  action={salvarpokemon}>
+                  <Text style={styles.textButton}>Escolher</Text>
+                </Button>
               </View>
-              <View
-                style={{
-                  height: 10,
-                  length: 10,
-                }}
-              />
             </View>
+            <View style={{paddingBottom: 30}} />
           </View>
         </View>
       </ScrollView>
     </View>
   );
 };
-
 export default Pokemon;

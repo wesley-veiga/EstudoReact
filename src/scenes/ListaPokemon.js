@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import styles from '../components/style';
 import SearchBar from '../components/SearchBar';
 
 const ListaPokemon = item => {
@@ -38,7 +39,7 @@ const ListaPokemon = item => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFFF'}}>
+    <View style={styles.container}>
       <SearchBar
         onChangeText={text => onChangeQuery(text)}
         values={values.query}
@@ -46,13 +47,7 @@ const ListaPokemon = item => {
       <FlatList
         ListHeaderComponent={() => (
           <View>
-            <Text
-              style={{
-                fontSize: 30,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                paddingVertical: 30,
-              }}>
+            <Text style={styles.textTitle}>
               Lista de Pokemons do tipo {item.item.name}
             </Text>
           </View>
@@ -62,18 +57,7 @@ const ListaPokemon = item => {
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => Actions.pokemon({item: item.pokemon})}
-            style={{
-              height: 50,
-              backgroundColor: '#F1B140',
-              marginBottom: 10,
-              justifyContent: 'center',
-              borderRadius: 35,
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowOpacity: 0.8,
-              elevation: 6,
-              shadowRadius: 15,
-              shadowOffset: {width: 1, height: 13},
-            }}>
+            style={styles.buttonStyle}>
             <Text
               style={{
                 color: 'white',

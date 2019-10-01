@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import SearchBar from '../components/SearchBar';
+import styles from '../components/style';
 
 const TiposPokemons = () => {
   const [values, setValues] = useState({
@@ -50,43 +51,15 @@ const TiposPokemons = () => {
       <FlatList
         ListHeaderComponent={() => (
           <View>
-            <Text
-              style={{
-                fontSize: 30,
-                fontWeight: 'bold',
-                textAlign: 'center',
-                paddingVertical: 30,
-              }}>
-              Escolha o tipo de Pokemon
-            </Text>
+            <Text style={styles.textTitle}>Escolha o tipo de Pokemon</Text>
           </View>
         )}
         data={values.pokemon}
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => Actions.listapokemon({item: item})}
-            style={{
-              height: 50,
-              backgroundColor: '#F1B140',
-              marginBottom: 10,
-              justifyContent: 'center',
-              borderRadius: 35,
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowOpacity: 0.8,
-              elevation: 6,
-              shadowRadius: 15,
-              shadowOffset: {width: 1, height: 13},
-            }}>
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 20,
-                textAlign: 'center',
-                paddingVertical: 10,
-                textTransform: 'capitalize',
-              }}>
-              {item.name}
-            </Text>
+            style={styles.buttonStyle}>
+            <Text style={styles.textButton}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />

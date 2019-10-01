@@ -3,6 +3,7 @@ import {View, Text, ScrollView, Dimensions, Image} from 'react-native';
 import Button from '../components/Button/Button';
 import {removePokemon} from '../actions';
 import {useDispatch, useSelector} from 'react-redux';
+import styles from '../components/style';
 
 const {width, height} = Dimensions.get('window');
 
@@ -23,29 +24,18 @@ const Equipe = () => {
   }, [pokemonLista]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#FFFF',
-        paddingLeft: 20,
-        paddingRight: 20,
-      }}>
+    <View style={styles.container}>
       <View style={{paddingTop: 30}}>
-        <Text
-          style={{
-            fontSize: 50,
-            fontWeight: 'bold',
-            textAlign: 'center',
-          }}>
-          Sua Equipe
-        </Text>
+        <Text style={styles.textTitle}>Sua Equipe</Text>
       </View>
       <ScrollView>
         <View style={{paddingTop: 20, paddingLeft: 10}}>
           {pokemonLista.length == 0 ? (
-            <Text style={{fontSize: 20}}>Por favor, selecione um pokemon</Text>
+            <Text style={styles.textSubtitle}>
+              Por favor, selecione um pokemon
+            </Text>
           ) : (
-            <Text style={{fontSize: 20}}>
+            <Text style={styles.text}>
               Total de Pokemons: {pokemonLista.length}.
             </Text>
           )}
@@ -55,53 +45,20 @@ const Equipe = () => {
             paddingTop: 22,
           }}>
           {list.map(pokemon => (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', borderWidth: 1}}>
               <View style={{flex: 1}}>
-                <Text
-                  style={{
-                    textTransform: 'capitalize',
-                    textAlign: 'center',
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                  }}>
-                  {pokemon.name}
-                </Text>
-                <Text
-                  style={{
-                    textTransform: 'capitalize',
-                    fontSize: 15,
-                    fontWeight: 'bold',
-                  }}>
-                  Tipo:
-                </Text>
+                <Text style={styles.textTitle}>{pokemon.name}</Text>
+                <Text style={styles.textBold}>Tipo:</Text>
                 {pokemon.types.map(type => (
-                  <Text
-                    style={{
-                      textTransform: 'capitalize',
-                      fontSize: 15,
-                    }}>
-                    {type.type.name}
-                  </Text>
+                  <Text style={styles.text}>{type.type.name}</Text>
                 ))}
                 <View>
-                  <Text
-                    style={{
-                      textTransform: 'capitalize',
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                    }}>
-                    Habilidades:
-                  </Text>
+                  <Text style={styles.textBold}>Habilidades:</Text>
                   {pokemon.abilities.map(ability => (
-                    <Text
-                      style={{
-                        textTransform: 'capitalize',
-                        fontSize: 15,
-                      }}>
-                      {ability.ability.name}
-                    </Text>
+                    <Text style={styles.text}>{ability.ability.name}</Text>
                   ))}
                 </View>
+                <View style={{paddingBottom: 20}} />
               </View>
               <View style={{flex: 1}}>
                 <Image
@@ -111,17 +68,7 @@ const Equipe = () => {
                 <Button
                   title={'apagar'}
                   action={() => apagarPokemon(pokemon.id)}>
-                  {/* action={() => apagarPokemon(pokemon)} */}
-                  <Text
-                    style={{
-                      color: '#FFFF',
-                      fontWeight: 'bold',
-                      textShadowOffset: {width: -1, height: 1},
-                      textShadowColor: 'rgba(0, 0, 0, 0.75)',
-                      textShadowRadius: 10,
-                    }}>
-                    Apagar
-                  </Text>
+                  <Text style={styles.textButton}>Apagar</Text>
                 </Button>
               </View>
             </View>
